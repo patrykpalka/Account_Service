@@ -2,6 +2,7 @@ package account.controller;
 
 import account.model.Payments;
 import account.service.BusinessFunctionalityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -11,14 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 public class BusinessFunctionalityController {
 
     private final BusinessFunctionalityService service;
-
-    @Autowired
-    public BusinessFunctionalityController(BusinessFunctionalityService businessFunctionalityService) {
-        this.service = businessFunctionalityService;
-    }
 
     @GetMapping("/api/empl/payment")
     public ResponseEntity<?> getPayment(@RequestParam Optional<String> period, Authentication auth) {

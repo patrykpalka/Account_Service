@@ -3,6 +3,7 @@ package account.config;
 import account.model.AppUser;
 import account.model.AppUserAdapter;
 import account.repository.AppUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,14 +14,10 @@ import org.springframework.stereotype.Service;
 // It is used by Spring Security during login to retrieve user data.
 // Converts AppUser objects to UserDetails using AppUserAdapter.
 @Service
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final AppUserRepository userRepository;
-
-    @Autowired
-    public UserDetailsServiceImpl(AppUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

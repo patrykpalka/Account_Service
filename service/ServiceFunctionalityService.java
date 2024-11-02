@@ -12,6 +12,7 @@ import account.repository.LoginAttemptRepository;
 import account.repository.RoleRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,20 +25,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ServiceFunctionalityService {
 
     private final AppUserRepository appUserRepository;
     private final RoleRepository roleRepository;
     private final LoginAttemptRepository attemptRepository;
     private final UserEventPublisher publisher;
-
-    @Autowired
-    public ServiceFunctionalityService(AppUserRepository appUserRepository, RoleRepository roleRepository, LoginAttemptRepository attemptRepository, UserEventPublisher publisher) {
-        this.appUserRepository = appUserRepository;
-        this.roleRepository = roleRepository;
-        this.attemptRepository = attemptRepository;
-        this.publisher = publisher;
-    }
 
     public ResponseEntity<?> displayInformation() {
         // Load users from repository

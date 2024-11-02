@@ -6,6 +6,7 @@ import account.model.Payments;
 import account.model.DTO.SalaryInformationDTO;
 import account.repository.AppUserRepository;
 import account.repository.PaymentsRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -18,16 +19,11 @@ import java.util.stream.Collectors;
 import static account.service.util.BusinessFunctionalityUtil.*;
 
 @Service
+@RequiredArgsConstructor
 public class BusinessFunctionalityService {
 
     private final AppUserRepository appUserRepository;
     private final PaymentsRepository paymentsRepository;
-
-    @Autowired
-    public BusinessFunctionalityService(AppUserRepository appUserRepository, PaymentsRepository paymentsRepository) {
-        this.appUserRepository = appUserRepository;
-        this.paymentsRepository = paymentsRepository;
-    }
 
     @Transactional
     public ResponseEntity<?> getPayment(Optional<String> period, Authentication auth) {

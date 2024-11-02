@@ -9,6 +9,7 @@ import account.repository.RoleRepository;
 import account.event.UserEventPublisher;
 import account.service.util.BreachedPasswordChecker;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -19,20 +20,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class AuthenticationService {
 
     private final AppUserRepository appUserRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
     private final UserEventPublisher publisher;
-
-    @Autowired
-    public AuthenticationService(AppUserRepository appUserRepository, RoleRepository roleRepository, PasswordEncoder encoder, UserEventPublisher publisher) {
-        this.appUserRepository = appUserRepository;
-        this.roleRepository = roleRepository;
-        this.encoder = encoder;
-        this.publisher = publisher;
-    }
 
     public ResponseEntity<?> signUp(AppUser user, Authentication auth, HttpServletRequest request) {
         // Verification steps

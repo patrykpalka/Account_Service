@@ -1,19 +1,15 @@
 package account.event;
 
 import account.repository.LogsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UserEventListener {
 
     private final LogsRepository logsRepository;
-
-    @Autowired
-    public UserEventListener(LogsRepository logsRepository) {
-        this.logsRepository = logsRepository;
-    }
 
     // When event is published save log in repository
     @EventListener

@@ -5,6 +5,7 @@ import account.model.DTO.NewPasswordDTO;
 import account.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,14 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class AuthenticationController {
 
     private final AuthenticationService service;
-
-    @Autowired
-    public AuthenticationController(AuthenticationService authenticationService) {
-        this.service = authenticationService;
-    }
 
     @PostMapping("/api/auth/signup")
     public ResponseEntity<?> signUp(@Valid @RequestBody AppUser user, BindingResult result, Authentication auth, HttpServletRequest request) {

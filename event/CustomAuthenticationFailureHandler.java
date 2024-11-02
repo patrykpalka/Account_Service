@@ -7,6 +7,7 @@ import account.repository.LoginAttemptRepository;
 import  jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
@@ -20,19 +21,12 @@ import java.util.Map;
 import static account.event.util.EventUtil.*;
 
 @Component
+@RequiredArgsConstructor
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
     private final UserEventPublisher publisher;
     private final LoginAttemptRepository attemptRepository;
     private final AppUserRepository appUserRepository;
-
-    @Autowired
-    public CustomAuthenticationFailureHandler(UserEventPublisher publisher, LoginAttemptRepository attemptRepository,
-                                              AppUserRepository appUserRepository) {
-        this.publisher = publisher;
-        this.attemptRepository = attemptRepository;
-        this.appUserRepository = appUserRepository;
-    }
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,

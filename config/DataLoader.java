@@ -3,18 +3,15 @@ package account.config;
 import account.model.Role;
 import account.repository.RoleRepository;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class DataLoader {
 
     private final RoleRepository roleRepository;
-
-    @Autowired
-    public DataLoader(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
 
     // Populate Role table with available roles at the start of application
     @PostConstruct
