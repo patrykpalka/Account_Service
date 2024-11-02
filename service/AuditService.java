@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AuditService {
+
     private final LogsRepository logsRepository;
 
     public ResponseEntity<?> getListOfEvents() {
